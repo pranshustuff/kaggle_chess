@@ -139,7 +139,7 @@ void trans_alloc(trans_t * trans) {
 
    target = option_get_int("Hash");
 
-   if (target < 4) target = 16; // option.cpp
+   if (target < 4) target = 1; // option.cpp
 
 #ifdef IS_64
    if (target > 16384) target = 16384; // option.cpp
