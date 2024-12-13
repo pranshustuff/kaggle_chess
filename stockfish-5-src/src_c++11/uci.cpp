@@ -32,7 +32,7 @@
 
 using namespace std;
 
-extern void benchmark(const Position& pos, istream& is);
+// extern void benchmark(const Position& pos, istream& is);
 
 namespace {
 
@@ -183,7 +183,7 @@ void UCI::loop(int argc, char* argv[]) {
           ss << Options["Hash"]    << " "
              << Options["Threads"] << " " << depth << " current " << token;
 
-          benchmark(pos, ss);
+          // benchmark(pos, ss);
       }
       else if (token == "key")
           sync_cout << hex << uppercase << setfill('0')
@@ -207,7 +207,7 @@ void UCI::loop(int argc, char* argv[]) {
       else if (token == "position")   position(pos, is);
       else if (token == "setoption")  setoption(is);
       else if (token == "flip")       pos.flip();
-      else if (token == "bench")      benchmark(pos, is);
+      // else if (token == "bench")      benchmark(pos, is);
       else if (token == "d")          sync_cout << pos.pretty() << sync_endl;
       else if (token == "isready")    sync_cout << "readyok" << sync_endl;
       else
