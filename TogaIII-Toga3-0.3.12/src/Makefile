@@ -1,14 +1,11 @@
-GCC=gcc
-CFLAGS=-static -Ofast -fomit-frame-pointer -DIS_64BIT -std=c++11 -flto
+GCC=g++
+CFLAGS=-static -Os -fomit-frame-pointer -DIS_64BIT -std=c++11 -s -flto -ffunction-sections -fdata-sections -Wl,--gc-sections
 WIN=x86_64-w64-mingw32-g++
 WINFLAGS=-static -Wall -fstrict-aliasing -fno-exceptions -fno-rtti  -Wno-unused-variable -Wno-unused-result -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fPIC -fomit-frame-pointer -std=c++11
 WIN2FLAGS=-static -Wall -DIS_64BIT -fstrict-aliasing -fno-exceptions -fno-rtti  -Wno-unused-variable -Wno-unused-result -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fPIC -fomit-frame-pointer -std=c++11
 
 all:
 	ld -r -b binary -o toganet.o toganet.bin
-	$(GCC) -mbmi2 $(CFLAGS) *.cpp ./nnue/*.cpp toganet.o -o toga3_bmi -lm -lpthread -DUSE_SSE41 -msse4.1 -DUSE_SSSE3 -mssse3 -DUSE_SSE2 -msse2 -DUSE_SSE -msse -DUSE_AVX2 -mavx2
-	$(GCC) $(CFLAGS) *.cpp ./nnue/*.cpp toganet.o -o toga3_avx2 -lm -lpthread -DUSE_SSE41 -msse4.1 -DUSE_SSSE3 -mssse3 -DUSE_SSE2 -msse2 -DUSE_SSE -msse -DUSE_AVX2 -mavx2
-	$(GCC) $(CFLAGS) *.cpp ./nnue/*.cpp toganet.o -o toga3_sse -lm -lpthread -DUSE_SSE41 -msse4.1 -DUSE_SSSE3 -mssse3 -DUSE_SSE2 -msse2 -DUSE_SSE -msse
 	$(GCC) $(CFLAGS) *.cpp ./nnue/*.cpp toganet.o -o toga3_basic -lm -lpthread
 
 win:
