@@ -25,7 +25,7 @@
 #include <iostream>
 #include <sstream>
 
-// #include "book.h"
+#include "book.h"
 #include "evaluate.h"
 #include "movegen.h"
 #include "movepick.h"
@@ -180,7 +180,7 @@ uint64_t Search::perft(Position& pos, Depth depth) {
 
 void Search::think() {
 
-  // static PolyglotBook book; // Defined static to initialize the PRNG only once
+  static PolyglotBook book; // Defined static to initialize the PRNG only once
 
   RootColor = RootPos.side_to_move();
   TimeMgr.init(Limits, RootPos.game_ply(), RootColor);
@@ -199,7 +199,7 @@ void Search::think() {
       goto finalize;
   }
 
-  /*if (Options["OwnBook"] && !Limits.infinite && !Limits.mate)
+  if (Options["OwnBook"] && !Limits.infinite && !Limits.mate)
   {
       Move bookMove = book.probe(RootPos, Options["Book File"], Options["Best Book Move"]);
 
@@ -208,7 +208,7 @@ void Search::think() {
           std::swap(RootMoves[0], *std::find(RootMoves.begin(), RootMoves.end(), bookMove));
           goto finalize;
       }
-  }*/
+  }
 
   if (Options["Write Search Log"])
   {
