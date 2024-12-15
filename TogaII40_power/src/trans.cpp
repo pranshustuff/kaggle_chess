@@ -138,7 +138,7 @@ void trans_alloc(trans_t * trans) {
    ASSERT(trans!=NULL);
 
    // Set a smaller hash size (e.g., 1 MB)
-   target = 2 * 1024 * 1024; // 1 MB
+   target = 4 * 1024 * 1024; // 1 MB
 
    for (size = 1; size != 0 && size <= target; size *= 2)
       ;
