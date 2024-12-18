@@ -1,4 +1,4 @@
-#define KING_ACTIVITY_H
+#ifndef KING_ACTIVITY_H
 #define KING_ACTIVITY_H
 
 #include "board.h"
