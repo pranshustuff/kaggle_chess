@@ -441,9 +441,15 @@ int eval(board_t * board, int alpha, int beta, int ThreadId) {
    // eval
 
    eval_king(board,mat_info,&opening,&endgame);
+   // Evaluate king activity for White
+int king_activity_white = evaluate_king_activity(board, White);
+opening += king_activity_white; // Add the score to the opening phase
+
+// Evaluate king activity for Black
+int king_activity_black = evaluate_king_activity(board, Black);
+opening -= king_activity_black; // Subtract the score for Black (opposite colour)
    eval_passer(board,pawn_info,&opening,&endgame);
-   int king_activity_score = evaluate_king_activity(board, colour);/////////////////////////////
-   op[colour] += king_activity_score;
+   
    // 2nd Lazy Eval Cutoff JD 
    // returns without computing expensive mobility
    
