@@ -1089,8 +1089,22 @@ static void eval_piece(const board_t * board, const material_info_t * mat_info, 
             
             break;
          }
+/////////////////////////////////
+         if (PIECE_TYPE(piece) == Rook64 || PIECE_TYPE(piece) == Queen64) {
+            if (board->pawn_file[me][SQUARE_FILE(from)] == 0) { // Open file
+               op[me] += 15;
+            }
+            if (PAWN_RANK(from, me) >= Rank5) { // Advanced rank
+               op[me] += 10;
+            }
+         }
+
       }
-      
+      //////////////////////////////
+      if (board->number[me][WB] == 2) { // Two bishops
+         op[me] += 50; // Bonus for bishop pair
+      }
+
       // space / piece incasion
       
       op[me] += SSpaceWeight[piece_nb] * attackvalue;
@@ -1275,6 +1289,26 @@ static void eval_king(const board_t * board, const material_info_t * mat_info, i
          }
       }
    }
+   // Additional king safety penalty for lack of pawn shelter//////////
+   if (UseShelter) {
+      int shelterPenalty = 0;
+      if (board->pawn_file[me][SQUARE_FILE(king)] == 0) {
+         shelterPenalty += 20; // No pawn in king's file
+      }
+      if (SQUARE_FILE(king) > FileA && board->pawn_file[me][SQUARE_FILE(king) - 1] == 0) {
+         shelterPenalty += 10; // No pawn in adjacent left file
+      }
+      if (SQUARE_FILE(king) < FileH && board->pawn_file[me][SQUARE_FILE(king) + 1] == 0) {
+         shelterPenalty += 10; // No pawn in adjacent right file
+      }
+      op[me] -= (shelterPenalty * ShelterOpening) / 256;
+   }
+      // Endgame king activity
+   if (phase < 128) { // Endgame phase check
+      int kingActivity = 14 - DISTANCE(KING_POS(board, me), CENTER_SQUARE);
+      eg[me] += kingActivity * 10; // Encourage active king in the endgame
+   }
+
 
    // update
 
@@ -1367,6 +1401,12 @@ static void eval_passer(const board_t * board, const pawn_info_t * pawn_info, in
          } else if (free_passer(board,sq,att)) {
             delta += FreePasser;
          }
+
+         // Check if passed pawn is blockaded by a piece//////////////////////////
+         if (board->square[sq + PAWN_MOVE_INC(att)] != Empty) {
+            eg[att] -= 30; // Penalty for blockaded passed pawn
+         }
+
 
          // king-distance bonus
 
