@@ -65,7 +65,7 @@ static const int RookUnit = 7;
 //static const int QueenUnit = 13;
 
 static const int PawnAttack = 25;
-
+static int phase;
 static const int MobMove = 1;
 static const int MobAttack = 1;
 static const int MobDefense = 0;
@@ -361,7 +361,7 @@ int eval(board_t * board, int alpha, int beta, int ThreadId) {
    material_info_t mat_info[1];
    pawn_info_t pawn_info[1];
    int mul[ColourNb];
-   int phase;
+   
    int eval;
    int wb, bb;
    int lazy_eval; // Thomas
@@ -1304,6 +1304,7 @@ static void eval_king(const board_t * board, const material_info_t * mat_info, i
       op[me] -= (shelterPenalty * ShelterOpening) / 256;
    }
       // Endgame king activity
+   
    if (phase < 128) { // Endgame phase check
       int kingActivity = 14 - DISTANCE(KING_POS(board, me), CENTER_SQUARE);
       eg[me] += kingActivity * 10; // Encourage active king in the endgame
