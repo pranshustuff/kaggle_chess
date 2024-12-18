@@ -4,7 +4,7 @@
 // includes
 
 #include <cstdlib> // for abs()
-
+#include "king_activity.h"
 #include "attack.h"
 #include "board.h"
 #include "colour.h"
@@ -442,7 +442,8 @@ int eval(board_t * board, int alpha, int beta, int ThreadId) {
 
    eval_king(board,mat_info,&opening,&endgame);
    eval_passer(board,pawn_info,&opening,&endgame);
-   
+   int king_activity_score = evaluate_king_activity(board, colour);/////////////////////////////
+   op[colour] += king_activity_score;
    // 2nd Lazy Eval Cutoff JD 
    // returns without computing expensive mobility
    
