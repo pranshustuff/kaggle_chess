@@ -377,7 +377,7 @@ struct UNDO {
     U64 mPawnKeyUd;
 };
 
-class Position {
+class POS {
     static int msCastleMask[64];
     static U64 msZobPiece[12][64];
     static U64 msZobCastle[16];
