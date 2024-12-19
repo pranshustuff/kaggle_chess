@@ -160,7 +160,7 @@ namespace Material {
       return e;
   }
 */
-  e->evaluationFunction = nullptr;
+  e->evaluationFunction = NULL;
   // OK, we didn't find any special evaluation function for the current
   // material configuration. Is there a suitable scaling function?
   //
@@ -214,9 +214,11 @@ namespace Material {
           e->scalingFunction[BLACK] = &ScaleKPKP[BLACK];
       }
   }
-*/
-  e->scalingFunction[WHITE] = nullptr;
-e->scalingFunction[BLACK] = nullptr;
+*/Value npm_w = VALUE_ZERO; // No non-pawn material for white
+Value npm_b = VALUE_ZERO; // No non-pawn material for black
+
+  e->scalingFunction[WHITE] = NULL;
+e->scalingFunction[BLACK] = NULL;
   // No pawns makes it difficult to win, even with a material advantage. This
   // catches some trivial draws like KK, KBK and KNK and gives a very drawish
   // scale factor for cases such as KRKBP and KmmKm (except for KBBKN).
