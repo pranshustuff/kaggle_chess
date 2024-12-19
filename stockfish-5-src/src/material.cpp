@@ -165,7 +165,7 @@ Entry* probe(const Position& pos, Table& entries, Endgames& endgames) {
   //
   // We face problems when there are several conflicting applicable
   // scaling functions and we need to decide which one to use.
-  EndgameBase<ScaleFactor>* sf;
+  //EndgameBase<ScaleFactor>* sf;
 
  // if (endgames.probe(key, sf))
  // {
