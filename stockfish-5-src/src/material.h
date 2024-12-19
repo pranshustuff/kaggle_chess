@@ -41,8 +41,11 @@ struct Entry {
   Score material_value() const { return make_score(value, value); }
   Score space_weight() const { return spaceWeight; }
   Phase game_phase() const { return gamePhase; }
-  bool specialized_eval_exists() const { return evaluationFunction != NULL; }
-  Value evaluate(const Position& pos) const { return (*evaluationFunction)(pos); }
+  //bool specialized_eval_exists() const { return evaluationFunction != NULL; }
+bool specialized_eval_exists() const { return false; } // Or remove the function entirely.
+
+ // Value evaluate(const Position& pos) const { return (*evaluationFunction)(pos); }
+Value evaluate(const Position& pos) const { return VALUE_DRAW; } // Provide a default value like `VALUE_DRAW`.
 
   // scale_factor takes a position and a color as input, and returns a scale factor
   // for the given color. We have to provide the position in addition to the color,
@@ -51,23 +54,27 @@ struct Entry {
   // a scaling function for draws with rook pawns and wrong-colored bishops.
 
   ScaleFactor scale_factor(const Position& pos, Color c) const {
+      return SCALE_FACTOR_NONE; // Provide a default scaling factor.
 
-    return !scalingFunction[c] || (*scalingFunction[c])(pos) == SCALE_FACTOR_NONE
-          ? ScaleFactor(factor[c]) : (*scalingFunction[c])(pos);
+    //return !scalingFunction[c] || (*scalingFunction[c])(pos) == SCALE_FACTOR_NONE
+      //    ? ScaleFactor(factor[c]) : (*scalingFunction[c])(pos);
   }
 
   Key key;
   int16_t value;
   uint8_t factor[COLOR_NB];
-  EndgameBase<Value>* evaluationFunction;
-  EndgameBase<ScaleFactor>* scalingFunction[COLOR_NB];
+  //EndgameBase<Value>* evaluationFunction;
+  //EndgameBase<ScaleFactor>* scalingFunction[COLOR_NB];
+Value (*evaluationFunction)(const Position&);
+ScaleFactor (*scalingFunction[COLOR_NB])(const Position&);
+
   Score spaceWeight;
   Phase gamePhase;
 };
 
 typedef HashTable<Entry, 8192> Table;
 
-Entry* probe(const Position& pos, Table& entries, Endgames& endgames);
+//Entry* probe(const Position& pos, Table& entries, Endgames& endgames);
 Phase game_phase(const Position& pos);
 
 } // namespace Material
