@@ -75,6 +75,7 @@ ScaleFactor (*scalingFunction[COLOR_NB])(const Position&);
 typedef HashTable<Entry, 8192> Table;
 
 //Entry* probe(const Position& pos, Table& entries, Endgames& endgames);
+Entry* probe(const Position& pos, Table& entries);
 Phase game_phase(const Position& pos);
 
 } // namespace Material
