@@ -411,7 +411,7 @@ class POS {
     U64 mTpBb[6];
     int mPc[64];
     int mKingSq[2];
-    int phase;
+    int mPhase;
     int mCnt[2][6];
     int mMgScore[2];
     int mEgScore[2];
