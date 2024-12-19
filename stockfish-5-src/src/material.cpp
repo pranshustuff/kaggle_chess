@@ -56,12 +56,12 @@ namespace {
 
   // Endgame evaluation and scaling functions are accessed directly and not through
   // the function maps because they correspond to more than one material hash key.
-  Endgame<KXK>   EvaluateKXK[]   = { Endgame<KXK>(WHITE),   Endgame<KXK>(BLACK) };
+ // Endgame<KXK>   EvaluateKXK[]   = { Endgame<KXK>(WHITE),   Endgame<KXK>(BLACK) };
 
-  Endgame<KBPsK>  ScaleKBPsK[]  = { Endgame<KBPsK>(WHITE),  Endgame<KBPsK>(BLACK) };
-  Endgame<KQKRPs> ScaleKQKRPs[] = { Endgame<KQKRPs>(WHITE), Endgame<KQKRPs>(BLACK) };
-  Endgame<KPsK>   ScaleKPsK[]   = { Endgame<KPsK>(WHITE),   Endgame<KPsK>(BLACK) };
-  Endgame<KPKP>   ScaleKPKP[]   = { Endgame<KPKP>(WHITE),   Endgame<KPKP>(BLACK) };
+ // Endgame<KBPsK>  ScaleKBPsK[]  = { Endgame<KBPsK>(WHITE),  Endgame<KBPsK>(BLACK) };
+  //Endgame<KQKRPs> ScaleKQKRPs[] = { Endgame<KQKRPs>(WHITE), Endgame<KQKRPs>(BLACK) };
+  //Endgame<KPsK>   ScaleKPsK[]   = { Endgame<KPsK>(WHITE),   Endgame<KPsK>(BLACK) };
+  //Endgame<KPKP>   ScaleKPKP[]   = { Endgame<KPKP>(WHITE),   Endgame<KPKP>(BLACK) };
 
   // Helper templates used to detect a given material distribution
   template<Color Us> bool is_KXK(const Position& pos) {
@@ -144,9 +144,9 @@ Entry* probe(const Position& pos, Table& entries, Endgames& endgames) {
   // Let's look if we have a specialized evaluation function for this particular
   // material configuration. Firstly we look for a fixed configuration one, then
   // for a generic one if the previous search failed.
-  if (endgames.probe(key, e->evaluationFunction))
-      return e;
-
+ // if (endgames.probe(key, e->evaluationFunction))
+   //   return e;
+/*
   if (is_KXK<WHITE>(pos))
   {
       e->evaluationFunction = &EvaluateKXK[WHITE];
@@ -158,7 +158,8 @@ Entry* probe(const Position& pos, Table& entries, Endgames& endgames) {
       e->evaluationFunction = &EvaluateKXK[BLACK];
       return e;
   }
-
+*/
+  e->evaluationFunction = nullptr;
   // OK, we didn't find any special evaluation function for the current
   // material configuration. Is there a suitable scaling function?
   //
@@ -166,15 +167,17 @@ Entry* probe(const Position& pos, Table& entries, Endgames& endgames) {
   // scaling functions and we need to decide which one to use.
   EndgameBase<ScaleFactor>* sf;
 
-  if (endgames.probe(key, sf))
-  {
-      e->scalingFunction[sf->color()] = sf;
-      return e;
-  }
+ // if (endgames.probe(key, sf))
+ // {
+ //     e->scalingFunction[sf->color()] = sf;
+   //   return e;
+//  }
 
   // Generic scaling functions that refer to more than one material
   // distribution. They should be probed after the specialized ones.
   // Note that these ones don't return after setting the function.
+
+  /*
   if (is_KBPsKs<WHITE>(pos))
       e->scalingFunction[WHITE] = &ScaleKBPsK[WHITE];
 
@@ -210,7 +213,9 @@ Entry* probe(const Position& pos, Table& entries, Endgames& endgames) {
           e->scalingFunction[BLACK] = &ScaleKPKP[BLACK];
       }
   }
-
+*/
+  e->scalingFunction[WHITE] = nullptr;
+e->scalingFunction[BLACK] = nullptr;
   // No pawns makes it difficult to win, even with a material advantage. This
   // catches some trivial draws like KK, KBK and KNK and gives a very drawish
   // scale factor for cases such as KRKBP and KmmKm (except for KBBKN).
