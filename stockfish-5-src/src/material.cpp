@@ -125,8 +125,8 @@ namespace Material {
 /// already present in the table, it is computed and stored there, so we don't
 /// have to recompute everything when the same material configuration occurs again.
 
-Entry* probe(const Position& pos, Table& entries, Endgames& endgames) {
-
+//Entry* probe(const Position& pos, Table& entries, Endgames& endgames) {
+  Entry* probe(const Position& pos, Table& entries) {
   Key key = pos.material_key();
   Entry* e = entries[key];
 
@@ -138,6 +138,7 @@ Entry* probe(const Position& pos, Table& entries, Endgames& endgames) {
 
   std::memset(e, 0, sizeof(Entry));
   e->key = key;
+    e->value = VALUE_DRAW;
   e->factor[WHITE] = e->factor[BLACK] = (uint8_t)SCALE_FACTOR_NORMAL;
   e->gamePhase = game_phase(pos);
 
