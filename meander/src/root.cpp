@@ -1,5 +1,6 @@
 #include "meander.h"
 #include "timer.h"
+#include <cstdlib>
 #include <thread>
 
 void Think(Position* p, int* pv) {
