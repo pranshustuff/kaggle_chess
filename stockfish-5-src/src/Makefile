@@ -41,9 +41,9 @@ PGOBENCH = ./$(EXE) bench 32 1 1 default time
 #OBJS = benchmark.o bitbase.o bitboard.o book.o endgame.o evaluate.o main.o \
 #	material.o misc.o movegen.o movepick.o notation.o pawns.o position.o \
 #	search.o thread.o timeman.o tt.o uci.o ucioption.o
-OBJS = bitbase.o bitboard.o endgame.o evaluate.o main.o \
+OBJS = bitbase.o bitboard.o book.o endgame.o evaluate.o main.o \
 	material.o misc.o movegen.o movepick.o notation.o pawns.o position.o \
-	search.o timeman.o tt.o
+	search.o thread.o timeman.o tt.o uci.o ucioption.o
 
 ### ==========================================================================
 ### Section 2. High-level Configuration
