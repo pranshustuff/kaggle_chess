@@ -207,7 +207,7 @@ void UCI::loop(int argc, char* argv[]) {
       else if (token == "position")   position(pos, is);
       else if (token == "setoption")  setoption(is);
       else if (token == "flip")       pos.flip();
-      else if (token == "bench")      benchmark(pos, is);
+      //else if (token == "bench")      benchmark(pos, is);
       else if (token == "d")          sync_cout << pos.pretty() << sync_endl;
       else if (token == "isready")    sync_cout << "readyok" << sync_endl;
       else
