@@ -4,7 +4,6 @@
 #ifdef FAST_POPCNT 
 
 #include <nmmintrin.h>
-#include <intrin.h>
 
 int FirstOne(Bitboard b) {
     unsigned long index;
