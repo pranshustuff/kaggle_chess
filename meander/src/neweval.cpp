@@ -10,7 +10,7 @@ int GetNewEval(POS *p)
 	int ph = 0;
 	int score;
 	
-	int mg_phase = Min(ph_max, p->phase);
+	int mg_phase = Min(ph_max, p->mPhase);
 	int eg_phase = ph_max - mg_phase;
 
 	score = (((mg * mg_phase) + (eg * eg_phase)) / ph_max);
