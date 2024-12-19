@@ -20,7 +20,7 @@
 #ifndef MATERIAL_H_INCLUDED
 #define MATERIAL_H_INCLUDED
 
-#include "endgame.h"
+//#include "endgame.h"
 #include "misc.h"
 #include "position.h"
 #include "types.h"
