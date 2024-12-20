@@ -198,7 +198,9 @@ void UCI::loop(int argc, char* argv[]) {
       //else if (token == "uci")
           //sync_cout << "id name " << engine_info(true) << "\nuciok"  << sync_endl;
                    // << "\n"       << Options
-                    
+        else if (token == "uci")
+              sync_cout << "chessbot\nuciok" << sync_endl;
+            
 
       else if (token == "eval")
       {
