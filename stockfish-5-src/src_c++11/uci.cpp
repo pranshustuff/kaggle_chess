@@ -174,6 +174,7 @@ void UCI::loop(int argc, char* argv[]) {
           else
               Search::Limits.ponder = false;
       }
+        /*
       else if (token == "perft" || token == "divide")
       {
           int depth;
@@ -185,28 +186,30 @@ void UCI::loop(int argc, char* argv[]) {
 
           // benchmark(pos, ss);
       }
+      */
+        /*
       else if (token == "key")
           sync_cout << hex << uppercase << setfill('0')
                     << "position key: "   << setw(16) << pos.key()
                     << "\nmaterial key: " << setw(16) << pos.material_key()
                     << "\npawn key:     " << setw(16) << pos.pawn_key()
                     << dec << nouppercase << setfill(' ') << sync_endl;
-
+*/
       else if (token == "uci")
-          sync_cout << "id name " << engine_info(true)
-                    << "\n"       << Options
-                    << "\nuciok"  << sync_endl;
+          sync_cout << "id name " << engine_info(true) << "\nuciok"  << sync_endl;
+                   // << "\n"       << Options
+                    
 
       else if (token == "eval")
       {
           Search::RootColor = pos.side_to_move(); // Ensure it is set
           sync_cout << Eval::trace(pos) << sync_endl;
       }
-      else if (token == "ucinewgame") { /* Avoid returning "Unknown command" */ }
+      //else if (token == "ucinewgame") { /* Avoid returning "Unknown command" */ }
       else if (token == "go")         go(pos, is);
       else if (token == "position")   position(pos, is);
       else if (token == "setoption")  setoption(is);
-      else if (token == "flip")       pos.flip();
+     // else if (token == "flip")       pos.flip();
       // else if (token == "bench")      benchmark(pos, is);
       else if (token == "d")          sync_cout << pos.pretty() << sync_endl;
       else if (token == "isready")    sync_cout << "readyok" << sync_endl;
