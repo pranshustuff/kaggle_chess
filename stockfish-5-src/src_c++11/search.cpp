@@ -1608,7 +1608,7 @@ void check_time() {
   if (Time::now() - lastInfoTime >= 1000)
   {
       lastInfoTime = Time::now();
-      dbg_print();
+      //dbg_print();
   }
 
   if (Limits.ponder)
