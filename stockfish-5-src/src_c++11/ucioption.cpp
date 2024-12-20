@@ -34,7 +34,7 @@ UCI::OptionsMap Options; // Global object
 namespace UCI {
 
 /// 'On change' actions, triggered by an option's value change
-void on_logger(const Option& o) { start_logger(o); }
+//void on_logger(const Option& o) { start_logger(o); }
 void on_eval(const Option&) { Eval::init(); }
 void on_threads(const Option&) { Threads.read_uci_options(); }
 void on_hash_size(const Option& o) { TT.resize(o); }
@@ -53,7 +53,7 @@ bool CaseInsensitiveLess::operator() (const string& s1, const string& s2) const 
 
 void init(OptionsMap& o) {
 
-  o["Write Debug Log"]          << Option(false, on_logger);
+  //o["Write Debug Log"]          << Option(false, on_logger);
   o["Write Search Log"]         << Option(false);
   o["Search Log Filename"]      << Option("SearchLog.txt");
   o["Book File"]                << Option("book.bin");
