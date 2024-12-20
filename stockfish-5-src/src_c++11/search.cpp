@@ -25,7 +25,8 @@
 #include <iostream>
 #include <sstream>
 
-//#include "book.h"
+#include "book.h"
+
 #include "evaluate.h"
 #include "movegen.h"
 #include "movepick.h"
