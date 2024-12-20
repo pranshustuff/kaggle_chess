@@ -93,7 +93,7 @@ void dbg_print() {
 /// can toggle the logging of std::cout and std:cin at runtime whilst preserving
 /// usual i/o functionality, all without changing a single line of code!
 /// Idea from http://groups.google.com/group/comp.lang.c++/msg/1d941c0f26ea0d81
-
+/*
 struct Tie: public streambuf { // MSVC requires splitted streambuf for cin and cout
 
   Tie(streambuf* b, ofstream* f) : buf(b), file(f) {}
@@ -116,7 +116,8 @@ struct Tie: public streambuf { // MSVC requires splitted streambuf for cin and c
     return last = file->rdbuf()->sputc((char)c);
   }
 };
-
+*/
+/*
 class Logger {
 
   Logger() : in(cin.rdbuf(), &file), out(cout.rdbuf(), &file) {}
@@ -144,7 +145,7 @@ public:
     }
   }
 };
-
+*/
 
 /// Used to serialize access to std::cout to avoid multiple threads writing at
 /// the same time.
@@ -164,7 +165,7 @@ std::ostream& operator<<(std::ostream& os, SyncCout sc) {
 
 
 /// Trampoline helper to avoid moving Logger to misc.h
-void start_logger(bool b) { Logger::start(b); }
+//void start_logger(bool b) { Logger::start(b); }
 
 
 /// prefetch() preloads the given address in L1/L2 cache. This is a non-blocking
