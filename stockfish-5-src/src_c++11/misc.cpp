@@ -69,7 +69,7 @@ Time::point Time::now() {
 
 
 /// Debug functions used mainly to collect run-time statistics
-
+/*
 static int64_t hits[2], means[2];
 
 void dbg_hit_on(bool b) { ++hits[0]; if (b) ++hits[1]; }
@@ -87,7 +87,7 @@ void dbg_print() {
            << (double)means[1] / means[0] << endl;
 }
 
-
+*/
 /// Our fancy logging facility. The trick here is to replace cin.rdbuf() and
 /// cout.rdbuf() with two Tie objects that tie cin and cout to a file stream. We
 /// can toggle the logging of std::cout and std:cin at runtime whilst preserving
