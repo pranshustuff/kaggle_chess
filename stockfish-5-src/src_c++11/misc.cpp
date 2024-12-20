@@ -37,7 +37,7 @@ static const string Version = "5";
 /// will be either "Stockfish <Tag> DD-MM-YY" (where DD-MM-YY is the date when
 /// the program was compiled) or "Stockfish <Version>", depending on whether
 /// Version is empty.
-
+/*
 const string engine_info(bool to_uci) {
 
   const string months("Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec");
@@ -59,7 +59,7 @@ const string engine_info(bool to_uci) {
 
   return ss.str();
 }
-
+*/
 
 /// Convert system time to milliseconds. That's all we need.
 
