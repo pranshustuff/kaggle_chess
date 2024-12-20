@@ -101,7 +101,7 @@ struct Thread : public ThreadBase {
 
   SplitPoint splitPoints[MAX_SPLITPOINTS_PER_THREAD];
   Material::Table materialTable;
-  Endgames endgames;
+  //Endgames endgames;
   Pawns::Table pawnsTable;
   Position* activePosition;
   size_t idx;
