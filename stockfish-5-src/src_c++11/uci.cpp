@@ -195,7 +195,7 @@ void UCI::loop(int argc, char* argv[]) {
                     << "\npawn key:     " << setw(16) << pos.pawn_key()
                     << dec << nouppercase << setfill(' ') << sync_endl;
 */
-      else if (token == "uci")
+      //else if (token == "uci")
           //sync_cout << "id name " << engine_info(true) << "\nuciok"  << sync_endl;
                    // << "\n"       << Options
                     
